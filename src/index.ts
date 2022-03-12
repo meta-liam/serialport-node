@@ -32,3 +32,4 @@ function closeAllWorkers() {
 }
 
 export default { closeAllWorkers, list,createPort ,write ,close,version};
+module.exports = { closeAllWorkers, list,createPort ,write ,close,version};

@@ -2,7 +2,7 @@
   "name": "serialport-node",
   "version": "1.0.0",
   "description": "pc node serialport.",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -31,9 +31,9 @@
   "author": "liam",
   "license": "MIT",
   "files": [
-    "lib/**/*"
+    "dist/**/*"
   ],
   "bin": {
-    "serialport-node": "./lib/example/index.js"
+    "serialport-node": "./dist/example/index.js"
   }
 }

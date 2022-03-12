@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // node src/test/index.js
 
-const Port = require("../lib/index").default;
+const Port = require("../dist/index").default;
 
 // console.log(Port);
 let path = "";

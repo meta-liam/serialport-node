@@ -23,7 +23,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "preserveConstEnums": true,
         "module": "commonjs",
-        "outDir": "./lib"
+        "outDir": "./dist"
     },
     "include": [
         "src" 
