@@ -26,16 +26,16 @@
         "outDir": "./lib"
     },
     "include": [
-        "src"
-, "example/ts_xserialport.ts"    ],
+        "src" 
+      ],
 
     "exclude": [
         "**/__test__",
         "**/__mocks__",
         "/lib",
         "/dist",
-        "**/test",
-        "**/mocks",
+        "test",
+        "mocks",
         "coverage",
         "example",
         "**/*.test.ts",

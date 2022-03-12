@@ -2,11 +2,6 @@ import serial from "../index";
 
 describe("serialport ext", () => {
 
-    it("onSessionClose", () => {
-        serial.onSessionClose();
-        // console.log(serial);
-    });
-
     it("closeAllWorkers", () => {
         serial.closeAllWorkers();
     });

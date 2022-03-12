@@ -11,24 +11,24 @@ function list() {
 function createPort(option:any={ path: "COM1", baudRate: 115200, autoOpen: true },handle?:(data:any)=>void) {
     option.autoOpen = true;
     const p = new MYSerialPort(option)
-    if (handle)p.listen(handle);
-    serialPorts.set(option.path, p);
+    if (p && handle)p.listen(handle);
+    if(p)serialPorts.set(option.path, p);
 }
 
 function write(path:string,arr:Array<number>){
     let p = serialPorts.get(path);
-    p.write(Buffer.from(arr));
+    if(p)p.write(Buffer.from(arr));
 }
 
-function onSessionClose() {
-    serialPorts.forEach((p:MYSerialPort) => {
-        p.close()
-    })
-    console.log("close");
+function close(path:string){
+    let p = serialPorts.get(path);
+    if(p)p.close();
 }
+
 function closeAllWorkers() {
-    onSessionClose();
-    console.log("close");
+    serialPorts.forEach((p:MYSerialPort) => {
+        if(p)p.close()
+    })
 }
 
-export default { onSessionClose, closeAllWorkers, list,createPort ,write ,version};
+export default { closeAllWorkers, list,createPort ,write ,close,version};

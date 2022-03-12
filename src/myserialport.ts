@@ -59,7 +59,11 @@ class MySerialPort {
     }
 
     write(buff: Buffer) {
-        // console.log("write buff :", buff);
+        console.log("write buff :", buff);
+        if (!this.isOpen){
+            this._onHandler && this._onHandler('write', { error: "is close" });
+            return;
+        }
         if (this.port) {
             this.port.write(buff, (err: any) => {
                 if(err)this._onHandler && this._onHandler('write', { error: err });
@@ -75,6 +79,10 @@ class MySerialPort {
 
     listen(handle: ( data: any) => void) {
         this.onHandler = handle;
+    }
+
+    isOpen(){
+        return this.port ? this.port.opening:false;
     }
 
     close() {

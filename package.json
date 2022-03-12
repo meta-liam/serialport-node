@@ -1,14 +1,17 @@
 {
   "name": "serialport-node",
   "version": "1.0.0",
-  "description": "pc",
-  "main": "index.js",
+  "description": "pc node serialport.",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
     "dev": "tsc -p tsconfig.json && node example/index.js",
     "build": "tsc -p tsconfig.json"
   },
+  "workspaces": [
+    "src/*"
+  ],
   "dependencies": {
     "serialport": "^10.4.0"
   },
@@ -24,7 +27,13 @@
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": ["serialport","demo","liam","meta"],
+  "author": "liam",
+  "license": "MIT",
+  "files": [
+    "lib/**/*"
+  ],
+  "bin": {
+    "serialport-node": "./lib/example/index.js"
+  }
 }

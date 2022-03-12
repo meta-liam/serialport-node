@@ -2,8 +2,8 @@
 
 ## 本地调试串口
 
-node test/ts_serialport.js
+node example/demo_serialport.js
 
-## 调试xserialport
+## 调试serialport-node
 
-ts-node test/ts_xserialport.ts
+node ./example/index.js

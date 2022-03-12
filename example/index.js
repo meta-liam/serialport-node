@@ -1,21 +1,41 @@
 #!/usr/bin/env node
 // node src/test/index.js
 
-const MlinkServer = require("../lib/src/mlink");
-// const server = new MlinkServer();
+const Port = require("../lib/index").default;
 
-// 启动服务器, 默认端口52384, 支持传入参数自定义
-const server = new MlinkServer(8888);
+// console.log(Port);
+let path = "";
 
-// 监听服务器启动成功
-server.on("connection", () => {
-  console.log("xlink server start success");
+function handle(value){
+  console.log("handle::",value);
+  // if (value && value.type =="open" && value.data.open){
+  //   // Port.write(path,[ 97, 98, 99, 100 ]);
+  // }
+}
+
+function autoWrite(){
+  if (path =="")return;
+  setInterval(function () {
+    Port.write(path,[ 97, 98, 99, 100 ]);
+  }, 1000);
+}
+
+Port.list().then((v)=>{
+  const size = v.length;
+  if (size<1){
+    return ;
+  }
+  const option = v[size-1];
+  console.log("option:",option);
+  path = option.path;
+  Port.createPort({ path: path, baudRate: 115200, autoOpen: true },handle);
+  
+  autoWrite();
+  // Port.close(option.path);
 });
 
-// 监听服务器启动失败
-server.on("error", () => {
-  console.log("xlink server start fail");
-});
 
 // 关闭服务器
-// server.stop();
+// Port.closeAllWorkers();
+
+// node ./example/index.js
