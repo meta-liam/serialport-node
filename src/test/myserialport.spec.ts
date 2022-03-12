@@ -14,7 +14,7 @@ describe("xserialport ext", () => {
     // jest.mock('serialport');
 
     it("close", () => {
-        let port = new MySerialPort().onClose()
+        let port = new MySerialPort().close()
     });
 
     it("get port list", (done) => {
@@ -34,12 +34,12 @@ describe("xserialport ext", () => {
         const buff = Buffer.from(sendData, "utf8");
         // _port.onWrite(buff);
         setTimeout(() => {
-            _port.onWrite(buff);
+            _port.write(buff);
         }, 10);
 
         return new Promise(res => {
             setTimeout(() => {
-                _port.onClose();
+                _port.close();
             }, 300);
             setTimeout(() => {
                 res(1);

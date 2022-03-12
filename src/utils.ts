@@ -12,5 +12,10 @@ export const buff2Array = (buff: Buffer) => {
 
 //61626364 -> <Buffer 61 62 63 64>
 export const hexString2Buff = (ab: string): Buffer => {
-    return Buffer.from(ab, "hex")
+    return Buffer.from(ab, "hex");
+};
+
+// [ 97, 98, 99, 100 ] ->  <Buffer 61 62 63 64>
+export const array2Buff = (arr: Array<number>) => {
+    return  Buffer.from(arr);
 };

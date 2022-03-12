@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        "declaration": false,
+        "removeComments": true,
+        "rootDir": ".",
+        "sourceMap": true,
+        "noUnusedParameters": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "lib": [
+			"dom",
+            "esnext"
+		],
+        "target": "es2015",
+        "baseUrl": "./src",
+        "allowSyntheticDefaultImports": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "preserveConstEnums": true,
+        "module": "commonjs",
+        "outDir": "./lib"
+    },
+    "include": [
+        "src"
+, "example/ts_xserialport.ts"    ],
+
+    "exclude": [
+        "**/__test__",
+        "**/__mocks__",
+        "/lib",
+        "/dist",
+        "**/test",
+        "**/mocks",
+        "coverage",
+        "**/*.test.ts",
+        "**/*.test.js",
+        "**/*.spec.ts"
+    ]
+}

@@ -2,27 +2,31 @@ const { SerialPort } = require('serialport')
 
 let _port = new SerialPort({ path: '/dev/tty.usbmodem141301', baudRate: 115200 })
 
-//发hex
-// var senddata_hel = [0x61, 0x62, 0x63, 0x64]; //abcd [ 97, 98, 99, 100 ]
-// console.log("hex:", senddata_hel);
+//发Array
+// var buff = [0x61, 0x62, 0x63, 0x64]; //abcd [ 97, 98, 99, 100 ]
+// console.log("array:", buff);
 
 //发字符串
-let senddata = 'abcd';
-const buff = Buffer.from(senddata, "utf8");//<Buffer 61 62 63 64>
+let sendData = 'abcd';
+const buff = Buffer.from(sendData, "utf8");//<Buffer 61 62 63 64>
 
-function writeport() {
+// hex string
+// let sendData = '0x61626364';
+// const buff = Buffer.from(sendData, "hex");
+
+function writePort() {
     _port.write(buff, function (err) {
         if (err) {
             return console.log('Error on write: ', err.message);
         }
         console.log("------------------------")
-        console.log('send st: ', senddata);
+        console.log('send st: ', sendData);
         console.log('send buff: ', buff);
     });
 }
 
 _port.on('open', function () {
-    writeport();
+    writePort();
 });
 
 // open errors will be emitted as an error event
@@ -31,7 +35,7 @@ _port.on('error', function (err) {
 })
 
 setInterval(function () {
-    writeport();
+    writePort();
 }, 5000);
 
 
@@ -53,4 +57,4 @@ recv hex:  616263640d0a
 recv ascii: abcd
 */
 
-//  node test/ts_serialport.js
+//  node example/demo_serialport.js
