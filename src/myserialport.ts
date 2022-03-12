@@ -3,8 +3,9 @@ import { SerialPort } from 'serialport'
 // https://serialport.io/docs/
 class MySerialPort {
     port: any;
-    option: any;
-    onHandler: ({type: string, data: any}) => void;
+    option: any={ path: 'COM1', baudRate: 115200, autoOpen: false };
+    onHandler: ( data: any) => void;
+    
     constructor(option: any = { path: 'COM1', baudRate: 115200, autoOpen: false }) {
         this.option = option;
         if (this.option.autoOpen) {
@@ -16,66 +17,68 @@ class MySerialPort {
         if (serialport) {
             this.port = serialport; //方便mock
             this.bindEvent();
-            console.log("open 1")
             return true;
         }
         if (this.port && this.port.opening) {
-            console.log("open 2");
             this.bindEvent();
             return true; //已经存在
         }
-        this.port = new SerialPort({ path: this.option.path, baudRate: this.option.baudRate, autoOpen: true });
+        this.port = this.create();
         const res = this.port ? this.port.opening : false;
         this.bindEvent();
         return res;
     }
 
+    create():any{
+        return new SerialPort({ path: this.option.path, baudRate: this.option.baudRate, autoOpen: true });
+    }
+
     bindEvent(): boolean {
-        console.log("bindEvent")
         if (!this.port || !this.port.opening) return false;
         this.port.on('open', () => {
-            console.log("open:", this.option.path);
+            // console.log("open:", this.option.path);
             this._onHandler && this._onHandler('open', { open: true });
         });
         this.port.on('close', () => {
             this._onHandler && this._onHandler('close', { close: true })
         });
         this.port.on('disconnect', () => {
-            console.log("disconnect:", this.option.path);
+            // console.log("disconnect:", this.option.path);
             this._onHandler && this._onHandler('disconnect', { disconnect: true });
         });
 
         this.port.on('error', (err: any) => {
-            console.log("error:", err);
+            // console.log("error:", err);
             this._onHandler && this._onHandler('error', { error: err })
         });
         this.port.on('data', (data: Buffer) => {
-            console.log('data: ', data);
+            // console.log('data: ', data);
             this._onHandler && this._onHandler('data', data);
         });
         return true;
     }
 
     write(buff: Buffer) {
-        console.log("write buff :", buff);
+        // console.log("write buff :", buff);
         if (this.port) {
             this.port.write(buff, (err: any) => {
-                this._onHandler && this._onHandler('write', { error: err });
+                if(err)this._onHandler && this._onHandler('write', { error: err });
             });
         }
     }
-    _onHandler(type: string, data: any){
+    _onHandler(type: string, value: any){
         if (this.onHandler) {
-            this.onHandler({type,data})
+            this.onHandler({type,data:value})
         }
+        // console.log("_onHandler:",type,value);
     }
 
-    listen(handle: ({type:string, data: any}) => void) {
+    listen(handle: ( data: any) => void) {
         this.onHandler = handle;
     }
 
     close() {
-        // console.log("close");
+        if (this.port)
         this.port.close();
     }
 }

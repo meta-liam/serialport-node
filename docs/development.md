@@ -13,6 +13,10 @@ npm run dev
 
 ```
 
+## test
+
+npm run test:coverage
+
 ## 构建npm包
 
 ```shell mac

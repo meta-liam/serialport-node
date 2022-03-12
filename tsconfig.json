@@ -2,7 +2,7 @@
     "compilerOptions": {
         "declaration": false,
         "removeComments": true,
-        "rootDir": ".",
+        "rootDir": "./src",
         "sourceMap": true,
         "noUnusedParameters": true,
         "moduleResolution": "node",
@@ -12,7 +12,7 @@
             "esnext"
 		],
         "target": "es2015",
-        "baseUrl": "./src",
+        "baseUrl": "./",
         "allowSyntheticDefaultImports": true,
         "strict": false,
         "forceConsistentCasingInFileNames": true,
@@ -37,6 +37,7 @@
         "**/test",
         "**/mocks",
         "coverage",
+        "example",
         "**/*.test.ts",
         "**/*.test.js",
         "**/*.spec.ts"
