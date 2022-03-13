@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// node src/test/index.js
+// node ./example/index.js
 
 const Port = require("../dist/index").default;
 
@@ -8,9 +8,6 @@ let path = "";
 
 function handle(value){
   console.log("handle::",value);
-  // if (value && value.type =="open" && value.data.open){
-  //   // Port.write(path,[ 97, 98, 99, 100 ]);
-  // }
 }
 
 function autoWrite(){

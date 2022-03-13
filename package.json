@@ -1,6 +1,6 @@
 {
   "name": "serialport-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "pc node serialport.",
   "main": "./dist/index.js",
   "scripts": {
