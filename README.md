@@ -7,7 +7,7 @@ node语言实现的串口封装,支持多实例。
 ```shell
 npm install serialport-node
 
-npm i install serialport-node --registry=https://registry.npmmirror.com
+npm i serialport-node --registry=https://registry.npmmirror.com
 ```
 
 ## 例子
@@ -41,6 +41,8 @@ _Port.list().then((v:any)=>{
   // _Port.close(path);
 });
 ```
+
+[electron使用例子](https://github.com/meta-liam/electron-serialport-demo)
 
 ## 快速开始
 
