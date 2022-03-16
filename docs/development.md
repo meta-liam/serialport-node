@@ -33,3 +33,7 @@ chmod a+x ./build-mac.sh && ./build-mac.sh
 npm publish
 
 ```
+
+## 硬件测试
+
+[Arduino例子](./../example/arduino/back_send_string/back_send_string.ino)
