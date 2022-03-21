@@ -47,3 +47,9 @@ _Port.list().then((v:any)=>{
 ## 快速开始
 
 [开发文档](https://github.com/meta-liam/serialport-node)
+
+```shell
+npm i --registry=https://registry.npmmirror.com
+npm run build
+node ./example/index.js
+```

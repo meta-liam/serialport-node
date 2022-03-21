@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // node ./example/index.js
 
-const Port = require("../dist/index").default;
+const _Port = require("../dist/index");//.default;
 
-// console.log(Port);
+//console.log(_Port);
 let path = "";
 
 function handle(value){
@@ -13,26 +13,30 @@ function handle(value){
 function autoWrite(){
   if (path =="")return;
   setInterval(function () {
-    Port.write(path,[ 97, 98, 99, 100 ]);
+    _Port.write(path,[ 97, 98, 99, 100 ]);
   }, 1000);
 }
 
-Port.list().then((v)=>{
-  const size = v.length;
-  if (size<1){
-    return ;
-  }
-  const option = v[size-1];
-  console.log("option:",option);
-  path = option.path;
-  Port.createPort({ path: path, baudRate: 115200, autoOpen: true },handle);
-  
-  autoWrite();
-  // Port.close(option.path);
-});
+function run(){
+    _Port.list().then((v)=>{
+      console.log("list:",v);
+      const size = v.length;
+      if (size<1){
+        return ;
+      }
+      const option = v[size-1];
+      console.log("option:",option);
+      path = option.path;
+      _Port.createPort({ path: path, baudRate: 115200, autoOpen: true },handle);
+      
+      autoWrite();
+      // _Port.close(option.path);
+    });
+}
 
+run();
 
 // 关闭服务器
-// Port.closeAllWorkers();
+// _Port.closeAllWorkers();
 
 // node ./example/index.js
